@@ -1,14 +1,20 @@
 import React, { Suspense } from "react";
 import { Outlet } from "react-router-dom";
+import { QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { getClient } from "../queryClient";
 
 const Layout: React.FC = () => {
+  const queryClient = getClient();
+
   return (
-    <div>
+    <QueryClientProvider client={queryClient} >
       <Suspense fallback={"loading..."}>
         <Outlet />
       </Suspense>
-    </div>
-  );
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  ); 
 };
 
 export default Layout;
