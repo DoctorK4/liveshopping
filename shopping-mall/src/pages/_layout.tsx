@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { getClient } from "../queryClient";
 import Gnb from "../components/gnb";
 import { worker } from '../mocks/browser';
+import { RecoilRoot } from "recoil";
 
 const Layout: React.FC = () => {
   const queryClient = getClient();
@@ -13,13 +14,15 @@ const Layout: React.FC = () => {
   }
   
   return (
-    <QueryClientProvider client={queryClient} >
-      <Gnb />
-      <Suspense fallback={"loading..."}>
-        <Outlet />
-      </Suspense>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <RecoilRoot> 
+      <QueryClientProvider client={queryClient} >
+        <Gnb />
+        <Suspense fallback={"loading..."}>
+          <Outlet />
+        </Suspense>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </RecoilRoot>
   ); 
 };
 
