@@ -1,12 +1,28 @@
 import { gql } from 'graphql-tag';
 
-const GET_CART = gql `
-  query GET_CART {
-    id: string
-    imageUrl: string
-    price: number
-    title: string
-  }
-`
+export type CartType = {
+  id: string
+  imageUrl: string
+  price: number
+  title: string
+  amount: number
+};
 
-export default GET_CART;
+export const ADD_CART = gql `
+  mutation ADD_CART($id: string) {
+    id
+    imageUrl
+    price
+    title
+    amount
+  }
+`;
+
+export const GET_CART = gql `
+  query GET_CART {
+    id
+    imageUrl
+    price
+    title
+  }
+`;
